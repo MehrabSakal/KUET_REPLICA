@@ -16,12 +16,22 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.faculty.store') }}" method="POST">
+    <form action="{{ route('admin.faculty.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2">Teacher ID</label>
             <input type="text" name="teacher_id" value="{{ old('teacher_id') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
+            <input type="email" name="email" value="{{ old('email') }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+            <input type="password" name="password" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
 
         <div class="mb-4">
@@ -50,9 +60,9 @@
         </div>
 
         <div class="mb-6">
-            <label class="block text-gray-700 text-sm font-bold mb-2">Image URL (Optional)</label>
-            <input type="url" name="image" value="{{ old('image') }}" placeholder="https://example.com/image.jpg" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <p class="text-xs text-gray-500 mt-1">Provide a direct link to the teacher's photo.</p>
+            <label class="block text-gray-700 text-sm font-bold mb-2">Image Upload (Optional)</label>
+            <input type="file" name="image" accept="image/*" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <p class="text-xs text-gray-500 mt-1">Upload a photo of the teacher.</p>
         </div>
 
         <div class="flex items-center space-x-4">

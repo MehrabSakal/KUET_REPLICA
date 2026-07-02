@@ -2,9 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Faculty extends Model
+class Faculty extends Authenticatable
 {
-    protected $fillable = ['teacher_id', 'name', 'designation', 'department', 'research_interest', 'published_papers', 'image'];
+    use Notifiable;
+
+    protected $fillable = [
+        'teacher_id', 'name', 'designation', 'department', 'research_interest', 'published_papers', 'image', 'email', 'password'
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 }

@@ -43,3 +43,22 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     
     Route::resource('faculty', AdminFacultyController::class)->except(['show']);
 });
+
+// Teacher Routes
+Route::prefix('teacher')->name('teacher.')->group(function () {
+    // Guest Teacher Routes
+    Route::middleware('guest:teacher')->group(function () {
+        Route::get('/login', [\App\Http\Controllers\Teacher\TeacherAuthController::class, 'showLoginForm'])->name('login');
+        Route::post('/login', [\App\Http\Controllers\Teacher\TeacherAuthController::class, 'login'])->name('login.submit');
+    });
+
+    // Authenticated Teacher Routes
+    Route::middleware('auth:teacher')->group(function () {
+        Route::post('/logout', [\App\Http\Controllers\Teacher\TeacherAuthController::class, 'logout'])->name('logout');
+        
+        Route::get('/dashboard', [\App\Http\Controllers\Teacher\TeacherDashboardController::class, 'index'])->name('dashboard');
+        
+        Route::get('/profile/edit', [\App\Http\Controllers\Teacher\TeacherProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile/update', [\App\Http\Controllers\Teacher\TeacherProfileController::class, 'update'])->name('profile.update');
+    });
+});

@@ -16,13 +16,23 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.faculty.update', $faculty->id) }}" method="POST">
+    <form action="{{ route('admin.faculty.update', $faculty->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2">Teacher ID</label>
             <input type="text" name="teacher_id" value="{{ old('teacher_id', $faculty->teacher_id) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
+            <input type="email" name="email" value="{{ old('email', $faculty->email) }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Password (Leave blank to keep current)</label>
+            <input type="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
 
         <div class="mb-4">
@@ -51,8 +61,13 @@
         </div>
 
         <div class="mb-6">
-            <label class="block text-gray-700 text-sm font-bold mb-2">Image URL (Optional)</label>
-            <input type="url" name="image" value="{{ old('image', $faculty->image) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Image Upload (Optional)</label>
+            @if($faculty->image)
+                <div class="mb-2">
+                    <img src="{{ $faculty->image }}" alt="Current Image" class="w-24 h-24 object-cover rounded shadow">
+                </div>
+            @endif
+            <input type="file" name="image" accept="image/*" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
 
         <div class="flex items-center space-x-4">
