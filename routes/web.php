@@ -13,10 +13,9 @@ Route::get('/academics', function () {
     return view('academics');
 });
 
-Route::get('/faculty', function () {
-    $faculties = \App\Models\Faculty::all();
-    return view('faculty', compact('faculties'));
-});
+Route::get('/faculty', [\App\Http\Controllers\FacultyPublicController::class, 'index'])->name('faculty.index');
+Route::get('/faculty/{id}', [\App\Http\Controllers\FacultyPublicController::class, 'show'])->name('faculty.show');
+Route::post('/faculty/{id}/research-request', [\App\Http\Controllers\FacultyPublicController::class, 'submitResearchRequest'])->name('faculty.research-request');
 
 Route::get('/students', function () {
     return view('students');
@@ -57,6 +56,9 @@ Route::prefix('teacher')->name('teacher.')->group(function () {
         Route::post('/logout', [\App\Http\Controllers\Teacher\TeacherAuthController::class, 'logout'])->name('logout');
         
         Route::get('/dashboard', [\App\Http\Controllers\Teacher\TeacherDashboardController::class, 'index'])->name('dashboard');
+        
+        Route::post('/research-requests/{id}/approve', [\App\Http\Controllers\Teacher\TeacherDashboardController::class, 'approveRequest'])->name('research-request.approve');
+        Route::post('/research-requests/{id}/reject', [\App\Http\Controllers\Teacher\TeacherDashboardController::class, 'rejectRequest'])->name('research-request.reject');
         
         Route::get('/profile/edit', [\App\Http\Controllers\Teacher\TeacherProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/profile/update', [\App\Http\Controllers\Teacher\TeacherProfileController::class, 'update'])->name('profile.update');

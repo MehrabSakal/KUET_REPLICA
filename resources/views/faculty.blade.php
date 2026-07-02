@@ -17,7 +17,7 @@
     @else
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             @foreach($faculties as $faculty)
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                <a href="{{ route('faculty.show', $faculty->id) }}" class="block bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
                     <div class="h-56 bg-gray-200 overflow-hidden flex justify-center items-center">
                         @if($faculty->image)
                             <img src="{{ $faculty->image }}" alt="{{ $faculty->name }}" class="w-full h-full object-cover">
@@ -30,7 +30,7 @@
                         <p class="text-blue-600 font-semibold mb-2">{{ $faculty->designation }}</p>
                         <p class="text-gray-500 text-sm bg-gray-100 rounded-full px-3 py-1 inline-block">{{ $faculty->department }}</p>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
     @endif

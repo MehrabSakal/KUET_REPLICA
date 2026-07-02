@@ -17,4 +17,9 @@ class Faculty extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function researchRequests()
+    {
+        return $this->hasMany(ResearchRequest::class);
+    }
 }

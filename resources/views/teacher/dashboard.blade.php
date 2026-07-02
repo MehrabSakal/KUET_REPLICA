@@ -63,16 +63,92 @@
                     </div>
                 </div>
 
-                <!-- Research Requests Widget (Placeholder) -->
-                <div class="bg-white overflow-hidden shadow rounded-lg p-6 flex flex-col justify-between">
-                    <div>
-                        <h2 class="text-xl font-bold text-gray-800 mb-2">Research Requests</h2>
-                        <p class="text-gray-600">You have no pending research requests at the moment.</p>
+            </div>
+            
+            <!-- Research Requests Section -->
+            <div class="mt-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Pending Research Requests</h2>
+                
+                @if($pendingRequests->isEmpty())
+                    <div class="bg-white rounded-lg shadow p-6 text-center text-gray-500">
+                        You have no pending research requests at the moment.
                     </div>
-                    <div class="mt-4">
-                        <button disabled class="bg-gray-300 text-gray-600 px-4 py-2 rounded cursor-not-allowed">View Requests (Coming Soon)</button>
+                @else
+                    <div class="grid grid-cols-1 gap-4">
+                        @foreach($pendingRequests as $request)
+                            <div class="bg-white rounded-lg shadow p-6 border-l-4 border-yellow-400">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-800">{{ $request->student_name }}</h3>
+                                        <p class="text-sm text-gray-600 mb-1">
+                                            <a href="mailto:{{ $request->student_email }}" class="text-blue-600 hover:underline">{{ $request->student_email }}</a>
+                                            @if($request->student_id)
+                                                | ID: <span class="font-semibold">{{ $request->student_id }}</span>
+                                            @endif
+                                        </p>
+                                        <p class="text-xs text-gray-500 mb-4">Requested on {{ $request->created_at->format('M d, Y') }}</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <form method="POST" action="{{ route('teacher.research-request.approve', $request->id) }}">
+                                            @csrf
+                                            <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm font-semibold transition">Approve</button>
+                                        </form>
+                                        <form method="POST" action="{{ route('teacher.research-request.reject', $request->id) }}">
+                                            @csrf
+                                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm font-semibold transition">Reject</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded mt-2 text-gray-700 text-sm">
+                                    <strong>Message:</strong><br>
+                                    {{ $request->message }}
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                </div>
+                @endif
+            </div>
+
+            <div class="mt-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Request History</h2>
+                
+                @if($pastRequests->isEmpty())
+                    <div class="bg-white rounded-lg shadow p-6 text-center text-gray-500">
+                        No past requests found.
+                    </div>
+                @else
+                    <div class="bg-white shadow rounded-lg overflow-hidden">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach($pastRequests as $request)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm font-medium text-gray-900">{{ $request->student_name }}</div>
+                                            <div class="text-sm text-gray-500">{{ $request->student_email }}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            @if($request->status == 'approved')
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Approved</span>
+                                            @else
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Rejected</span>
+                                            @endif
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ $request->updated_at->format('M d, Y') }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
             </div>
             
             <!-- Quick Stats or Other Info -->
