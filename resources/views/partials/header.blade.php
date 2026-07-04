@@ -18,6 +18,7 @@
             <li><a href="{{ url('/students') }}">Students</a></li>
             <li><a href="{{ url('/research') }}">Research</a></li>
             <li><a href="{{ url('/administration') }}">Administration</a></li>
+            <li><a href="{{ url('/events') }}">Events</a></li>
         </ul>
     </nav>
 </header>

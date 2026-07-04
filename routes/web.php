@@ -25,6 +25,10 @@ Route::get('/research', function () {
     return view('research');
 });
 
+Route::get('/events', function () {
+    return view('events');
+});
+
 Route::get('/administration', function () {
     return view('administration');
 });
