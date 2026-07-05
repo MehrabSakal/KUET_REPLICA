@@ -17,6 +17,7 @@
             <li><a href="{{ url('/faculty') }}">Faculty</a></li>
             <li><a href="{{ url('/students') }}">Students</a></li>
             <li><a href="{{ url('/research') }}">Research</a></li>
+            <li><a href="{{ route('lost-and-found.index') }}">Lost & Found</a></li>
             <li><a href="{{ url('/administration') }}">Administration</a></li>
             <li><a href="{{ url('/events') }}">Events</a></li>
         </ul>

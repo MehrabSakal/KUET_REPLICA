@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\FacultyController as AdminFacultyController;
+use App\Http\Controllers\Admin\LostAndFoundController as AdminLostAndFoundController;
+use App\Http\Controllers\LostAndFoundItemController;
 
 Route::get('/', function () {
     return view('home');
@@ -29,6 +31,11 @@ Route::get('/events', function () {
     return view('events');
 });
 
+Route::get('/lost-and-found', [LostAndFoundItemController::class, 'index'])->name('lost-and-found.index');
+Route::get('/lost-and-found/create', [LostAndFoundItemController::class, 'create'])->name('lost-and-found.create');
+Route::post('/lost-and-found', [LostAndFoundItemController::class, 'store'])->name('lost-and-found.store');
+Route::post('/lost-and-found/{id}/resolve', [LostAndFoundItemController::class, 'resolve'])->name('lost-and-found.resolve');
+
 Route::get('/administration', function () {
     return view('administration');
 });
@@ -45,6 +52,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     });
     
     Route::resource('faculty', AdminFacultyController::class)->except(['show']);
+    Route::resource('lost-and-found', AdminLostAndFoundController::class)->except(['show', 'create', 'store']);
 });
 
 // Teacher Routes

@@ -20,6 +20,11 @@
                         👨‍🏫 Manage Faculty
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.lost-and-found.index') }}" class="block p-3 rounded hover:bg-blue-800 transition {{ request()->routeIs('admin.lost-and-found.*') ? 'bg-blue-800' : '' }}">
+                        🔍 Lost & Found
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="p-4 border-t border-blue-800">
