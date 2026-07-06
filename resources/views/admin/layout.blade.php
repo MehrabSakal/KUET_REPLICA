@@ -25,6 +25,11 @@
                         🔍 Lost & Found
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.bus-schedule.index') }}" class="block p-3 rounded hover:bg-blue-800 transition {{ request()->routeIs('admin.bus-schedule.*') ? 'bg-blue-800' : '' }}">
+                        🚌 Bus Schedule
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="p-4 border-t border-blue-800">

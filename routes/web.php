@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\FacultyController as AdminFacultyController;
 use App\Http\Controllers\Admin\LostAndFoundController as AdminLostAndFoundController;
+use App\Http\Controllers\Admin\BusScheduleController as AdminBusScheduleController;
 use App\Http\Controllers\LostAndFoundItemController;
+use App\Http\Controllers\BusScheduleController;
 
 Route::get('/', function () {
     return view('home');
@@ -40,6 +42,8 @@ Route::get('/administration', function () {
     return view('administration');
 });
 
+Route::get('/bus-schedule', [BusScheduleController::class, 'index'])->name('bus-schedule.index');
+
 // Authentication Routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -53,6 +57,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     
     Route::resource('faculty', AdminFacultyController::class)->except(['show']);
     Route::resource('lost-and-found', AdminLostAndFoundController::class)->except(['show', 'create', 'store']);
+    Route::resource('bus-schedule', AdminBusScheduleController::class)->except(['show']);
 });
 
 // Teacher Routes
