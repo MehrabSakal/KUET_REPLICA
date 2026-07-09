@@ -16,6 +16,7 @@ class AdminUserSeeder extends Seeder
             'name' => 'Admin User',
             'username' => 'admin',
             'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'user_type' => 'admin',
         ]);
     }
 }
