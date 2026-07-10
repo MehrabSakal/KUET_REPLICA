@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\LostAndFoundItemController;
 use App\Http\Controllers\BusScheduleController;
 use App\Http\Controllers\StudentVerificationController;
+use App\Http\Controllers\ResearchController;
 
 // Student Verification Routes
 Route::get('/verify-student', [StudentVerificationController::class, 'showVerifyForm'])->name('student.verify');
@@ -34,9 +35,7 @@ Route::get('/students', function () {
     return view('students');
 });
 
-Route::get('/research', function () {
-    return view('research');
-});
+Route::get('/research', [ResearchController::class, 'index'])->name('research');
 
 Route::get('/events', function () {
     return view('events');
