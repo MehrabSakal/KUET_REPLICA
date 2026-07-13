@@ -4,31 +4,31 @@
 @section('page_title', 'Faculty')
 
 @section('content')
-<div class="container mx-auto px-4 py-8">
-    <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-800">Our Faculty Members</h2>
-        <p class="text-gray-600 mt-2">Meet the dedicated teachers guiding our students.</p>
+<div class="faculty-page-container">
+    <div class="faculty-page-header">
+        <h2 class="faculty-page-title">Our Faculty Members</h2>
+        <p class="faculty-page-subtitle">Meet the dedicated teachers guiding our students.</p>
     </div>
 
     @if($faculties->isEmpty())
-        <div class="text-center text-gray-500 py-12">
+        <div class="no-faculty-message">
             No faculty members are listed yet.
         </div>
     @else
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div class="faculty-grid">
             @foreach($faculties as $faculty)
-                <a href="{{ route('faculty.show', $faculty->id) }}" class="block bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                    <div class="h-56 bg-gray-200 overflow-hidden flex justify-center items-center">
+                <a href="{{ route('faculty.show', $faculty->id) }}" class="faculty-card">
+                    <div class="faculty-image-container">
                         @if($faculty->image)
-                            <img src="{{ $faculty->image }}" alt="{{ $faculty->name }}" class="w-full h-full object-cover">
+                            <img src="{{ $faculty->image }}" alt="{{ $faculty->name }}" class="faculty-image">
                         @else
-                            <span class="text-6xl">👤</span>
+                            <span class="faculty-avatar-placeholder">👤</span>
                         @endif
                     </div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold text-gray-800 mb-1">{{ $faculty->name }}</h3>
-                        <p class="text-blue-600 font-semibold mb-2">{{ $faculty->designation }}</p>
-                        <p class="text-gray-500 text-sm bg-gray-100 rounded-full px-3 py-1 inline-block">{{ $faculty->department }}</p>
+                    <div class="faculty-info">
+                        <h3 class="faculty-name">{{ $faculty->name }}</h3>
+                        <p class="faculty-designation">{{ $faculty->designation }}</p>
+                        <p class="faculty-department">{{ $faculty->department }}</p>
                     </div>
                 </a>
             @endforeach

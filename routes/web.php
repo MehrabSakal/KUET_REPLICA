@@ -24,6 +24,61 @@ Route::get('/academics', function () {
     return view('academics');
 });
 
+Route::get('/academics/{faculty}', function ($faculty) {
+    $data = [
+        'civil-engineering' => [
+            'name' => 'Faculty of Civil Engineering',
+            'icon' => '🏗️',
+            'departments' => [
+                'Department of Civil Engineering',
+                'Department of Urban and Regional Planning',
+                'Department of Building Engineering and Construction Management',
+                'Department of Architecture'
+            ]
+        ],
+        'science-and-humanities' => [
+            'name' => 'Faculty of Science and Humanities',
+            'icon' => '⚛️',
+            'departments' => [
+                'Department of Mathematics',
+                'Department of Physics',
+                'Department of Chemistry',
+                'Department of Humanities and Business'
+            ]
+        ],
+        'eee' => [
+            'name' => 'Faculty of Electrical and Electronic Engineering',
+            'icon' => '⚡',
+            'departments' => [
+                'Department of Electrical and Electronic Engineering',
+                'Department of Computer Science and Engineering',
+                'Department of Electronics and Communication Engineering',
+                'Department of Biomedical Engineering',
+                'Department of Materials Science and Engineering'
+            ]
+        ],
+        'mechanical-engineering' => [
+            'name' => 'Faculty of Mechanical Engineering',
+            'icon' => '⚙️',
+            'departments' => [
+                'Department of Mechanical Engineering',
+                'Department of Industrial Engineering and Management',
+                'Department of Energy Science and Engineering',
+                'Department of Leather Engineering',
+                'Department of Textile Engineering',
+                'Department of Chemical Engineering',
+                'Department of Mechatronics Engineering'
+            ]
+        ]
+    ];
+    
+    if (!array_key_exists($faculty, $data)) {
+        abort(404);
+    }
+    
+    return view('faculty-departments', ['facultyData' => $data[$faculty]]);
+})->name('academics.faculty');
+
 Route::get('/faculty', [\App\Http\Controllers\FacultyPublicController::class, 'index'])->name('faculty.index');
 Route::get('/faculty/{id}', [\App\Http\Controllers\FacultyPublicController::class, 'show'])->name('faculty.show');
 

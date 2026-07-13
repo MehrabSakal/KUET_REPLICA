@@ -19,9 +19,11 @@
 
         <div class="footer-section">
             <h3>Follow Us</h3>
-            <a href="#">Facebook</a> |
-            <a href="#">Twitter</a> |
-            <a href="#">YouTube</a>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">YouTube</a>
+            </div>
         </div>
     </div>
 

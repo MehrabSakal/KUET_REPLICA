@@ -231,7 +231,7 @@
 
 <!-- 1. Hero Slider Section -->
 <div class="hero-slider-section">
-    <img class="hero-image" src="https://kuet.ac.bd/images/webcontent/1028.jpeg" alt="KUET Campus View">
+    <img class="hero-image" src="{{ asset('images/about_kuet.jpg') }}" alt="KUET Campus View">
 </div>
 
 <!-- 2. Latest News Ticker Section -->
@@ -273,6 +273,8 @@
     </p>
     <a href="#" class="read-more-button">Explore here</a>
 </div>
+
+
 
 <!-- 5. Main Content Grid (News and Notices) -->
 <div class="content-grid">
