@@ -111,9 +111,8 @@ Route::get('/administration', function () {
 Route::get('/bus-schedule', [BusScheduleController::class, 'index'])->name('bus-schedule.index');
 
 // Authentication Routes
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+require __DIR__.'/auth.php';
+require __DIR__.'/teacher-auth.php';
 
 // Admin Routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -129,16 +128,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 // Teacher Routes
 Route::prefix('teacher')->name('teacher.')->group(function () {
-    // Guest Teacher Routes
-    Route::middleware('guest:teacher')->group(function () {
-        Route::get('/login', [\App\Http\Controllers\Teacher\TeacherAuthController::class, 'showLoginForm'])->name('login');
-        Route::post('/login', [\App\Http\Controllers\Teacher\TeacherAuthController::class, 'login'])->name('login.submit');
-    });
-
     // Authenticated Teacher Routes
     Route::middleware('auth:teacher')->group(function () {
-        Route::post('/logout', [\App\Http\Controllers\Teacher\TeacherAuthController::class, 'logout'])->name('logout');
-        
         Route::get('/dashboard', [\App\Http\Controllers\Teacher\TeacherDashboardController::class, 'index'])->name('dashboard');
         
         Route::post('/research-requests/{id}/approve', [\App\Http\Controllers\Teacher\TeacherDashboardController::class, 'approveRequest'])->name('research-request.approve');

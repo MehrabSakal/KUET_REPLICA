@@ -385,4 +385,30 @@
     
 </div>
 
+<!-- 6. Location Map Section -->
+<div class="location-section" style="margin-top: 50px; margin-bottom: 20px;">
+    <h2 class="section-title" style="margin-bottom: 25px;">Find Us on Campus</h2>
+    <div id="kuet-map" style="width: 100%; height: 450px; border-radius: 12px; border: 1px solid #e2e8f0; z-index: 1; box-shadow: 0 10px 30px rgba(0,0,0,0.05);"></div>
+</div>
+
+<!-- Leaflet Location API dependencies -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initialize the Leaflet map API, centered on KUET coordinates
+        var map = L.map('kuet-map').setView([22.900, 89.502], 16);
+
+        // Load the OpenStreetMap tiles
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a beautiful marker for the university
+        var marker = L.marker([22.900, 89.502]).addTo(map);
+        marker.bindPopup("<div style='text-align:center;'><b>KUET Campus</b><br>Khulna University of Engineering & Technology<br>Fulbarigate, Khulna 9203</div>").openPopup();
+    });
+</script>
+
 @endsection
