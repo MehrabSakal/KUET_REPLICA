@@ -109,6 +109,7 @@
     .card-2 .faculty-icon { background: linear-gradient(135deg, #faf5ff, #f3e8ff); }
     .card-3 .faculty-icon { background: linear-gradient(135deg, #fffbeb, #fef3c7); }
     .card-4 .faculty-icon { background: linear-gradient(135deg, #fdf2f8, #fbcfe8); }
+    .card-5 .faculty-icon { background: linear-gradient(135deg, #f0fdfa, #ccfbf1); }
 
     .section-header {
         text-align: center;
@@ -172,6 +173,23 @@
                 <div class="faculty-icon">⚙️</div>
                 <h3 class="faculty-title">Faculty of Mechanical Engineering</h3>
                 <div class="faculty-subtitle">View Departments</div>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- Central Library Section -->
+    <div class="section-header" style="margin-top: 80px;">
+        <h2>Central Library</h2>
+        <p>Access our vast collection of physical and digital resources to support your academic and research endeavors.</p>
+    </div>
+    
+    <div class="faculty-grid">
+        <a href="{{ url('https://library.kuet.ac.bd/') }}" class="faculty-card-link">
+            <div class="faculty-card card-5">
+                <div class="faculty-icon">📚</div>
+                <h3 class="faculty-title">Central Library</h3>
+                <div class="faculty-subtitle">Explore Resources</div>
             </div>
         </a>
     </div>
