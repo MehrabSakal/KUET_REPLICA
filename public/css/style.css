@@ -56,7 +56,6 @@ header {
     width: auto;
     object-fit: contain;
     border-radius: 8px;
-    /* In case the logo has sharp edges */
 }
 
 .logo-text {
@@ -70,6 +69,7 @@ header {
     margin: 0;
     background: linear-gradient(90deg, #2563eb, #4f46e5);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -221,9 +221,8 @@ footer {
     border-top: 1px solid #1e293b;
 }
 
-/* -------------------------------------
-   Research Dashboard Styles
--------------------------------------- */
+/*Research Dashboard Styles*/
+
 .research-dashboard {
     max-width: 1200px;
     margin: 0 auto;
@@ -481,9 +480,9 @@ footer {
     }
 }
 
-/* -------------------------------------
-   Faculty List Page Styles
--------------------------------------- */
+
+/*Faculty List Page Styles*/
+
 .faculty-page-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -582,9 +581,8 @@ footer {
     display: inline-block;
 }
 
-/* -------------------------------------
-   Faculty Details Page Styles
--------------------------------------- */
+/*Faculty Details Page Styles*/
+
 .faculty-details-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -857,62 +855,291 @@ footer {
     outline: none;
 }
 
-/* -------------------------------------
-   Administration Page Styles
--------------------------------------- */
-.admin-container { max-width: 1280px; margin: 0 auto; padding: 3rem 1rem; }
-.admin-section { margin-bottom: 5rem; }
-.admin-section-header { text-align: center; margin-bottom: 3rem; }
-.admin-section-title { font-size: 1.875rem; font-weight: 800; color: #1f2937; letter-spacing: -0.025em; }
-@media (min-width: 768px) { .admin-section-title { font-size: 2.25rem; } }
-.admin-title-underline { height: 0.25rem; width: 6rem; background-color: #2563eb; margin: 1rem auto 0; border-radius: 0.25rem; }
-.admin-section-description { margin-top: 1rem; color: #4b5563; max-width: 42rem; margin-left: auto; margin-right: auto; }
+/*Administration Page Styles*/
 
-.admin-leadership-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
-@media (min-width: 768px) { .admin-leadership-grid { grid-template-columns: repeat(3, 1fr); } }
+.admin-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+}
 
-.admin-leader-card { background-color: white; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); border: 1px solid #f3f4f6; display: flex; flex-direction: column; align-items: center; padding: 2rem; transition: box-shadow 0.3s ease; }
-.admin-leader-card:hover { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
+.admin-section {
+    margin-bottom: 5rem;
+}
 
-.admin-leader-avatar { width: 10rem; height: 10rem; border-radius: 9999px; overflow: hidden; margin-bottom: 1.5rem; border: 4px solid #eff6ff; background-color: #f3f4f6; display: flex; align-items: center; justify-content: center; }
-.admin-leader-svg { width: 5rem; height: 5rem; color: #d1d5db; transition: color 0.3s ease; }
-.admin-leader-card:hover .admin-leader-svg { color: #3b82f6; }
-.admin-leader-img { width: 100%; height: 100%; object-fit: cover; }
+.admin-section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
 
-.admin-leader-name { font-size: 1.5rem; font-weight: 700; color: #111827; text-align: center; }
-.admin-leader-role { color: #2563eb; font-weight: 600; margin-bottom: 1rem; text-align: center; }
-.admin-leader-bio { color: #4b5563; font-size: 0.875rem; text-align: center; margin-bottom: 1.5rem; flex-grow: 1; }
-.admin-leader-link { display: inline-flex; align-items: center; font-size: 0.875rem; font-weight: 500; color: #2563eb; transition: color 0.3s ease; }
-.admin-leader-link:hover { color: #1e40af; }
-.admin-link-icon { width: 1rem; height: 1rem; margin-left: 0.25rem; }
+.admin-section-title {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: #1f2937;
+    letter-spacing: -0.025em;
+}
 
-.admin-offices-wrapper { background-color: #f9fafb; border-radius: 1.5rem; padding: 2rem; border: 1px solid #f3f4f6; }
-@media (min-width: 768px) { .admin-offices-wrapper { padding: 3rem; } }
+@media (min-width: 768px) {
+    .admin-section-title {
+        font-size: 2.25rem;
+    }
+}
 
-.admin-offices-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-@media (min-width: 640px) { .admin-offices-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .admin-offices-grid { grid-template-columns: repeat(3, 1fr); } }
+.admin-title-underline {
+    height: 0.25rem;
+    width: 6rem;
+    background-color: #2563eb;
+    margin: 1rem auto 0;
+    border-radius: 0.25rem;
+}
 
-.admin-office-card { display: block; background-color: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); border: 1px solid #f3f4f6; transition: all 0.3s ease; }
-.admin-office-card:hover { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); border-color: #bfdbfe; }
+.admin-section-description {
+    margin-top: 1rem;
+    color: #4b5563;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-.admin-office-icon { width: 3rem; height: 3rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; transition: background-color 0.3s ease, color 0.3s ease; }
-.admin-office-icon svg { width: 1.5rem; height: 1.5rem; }
+.admin-leadership-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
 
-.admin-office-card:nth-child(1) .admin-office-icon { background-color: #eff6ff; color: #2563eb; }
-.admin-office-card:nth-child(1):hover .admin-office-icon { background-color: #2563eb; color: white; }
-.admin-office-card:nth-child(2) .admin-office-icon { background-color: #f0fdf4; color: #16a34a; }
-.admin-office-card:nth-child(2):hover .admin-office-icon { background-color: #16a34a; color: white; }
-.admin-office-card:nth-child(3) .admin-office-icon { background-color: #faf5ff; color: #9333ea; }
-.admin-office-card:nth-child(3):hover .admin-office-icon { background-color: #9333ea; color: white; }
-.admin-office-card:nth-child(4) .admin-office-icon { background-color: #fefce8; color: #ca8a04; }
-.admin-office-card:nth-child(4):hover .admin-office-icon { background-color: #ca8a04; color: white; }
-.admin-office-card:nth-child(5) .admin-office-icon { background-color: #fef2f2; color: #dc2626; }
-.admin-office-card:nth-child(5):hover .admin-office-icon { background-color: #dc2626; color: white; }
-.admin-office-card:nth-child(6) .admin-office-icon { background-color: #f0fdfa; color: #0d9488; }
-.admin-office-card:nth-child(6):hover .admin-office-icon { background-color: #0d9488; color: white; }
-.admin-office-card:nth-child(7) .admin-office-icon { background-color: #fdf2f8; color: #db2777; }
-.admin-office-card:nth-child(7):hover .admin-office-icon { background-color: #db2777; color: white; }
+@media (min-width: 768px) {
+    .admin-leadership-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
-.admin-office-title { font-size: 1.125rem; font-weight: 700; color: #111827; margin-bottom: 0.5rem; }
-.admin-office-desc { color: #6b7280; font-size: 0.875rem; }
+.admin-leader-card {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.admin-leader-card:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.admin-leader-avatar {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    border: 4px solid #eff6ff;
+    background-color: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-leader-svg {
+    width: 5rem;
+    height: 5rem;
+    color: #d1d5db;
+    transition: color 0.3s ease;
+}
+
+.admin-leader-card:hover .admin-leader-svg {
+    color: #3b82f6;
+}
+
+.admin-leader-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.admin-leader-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    text-align: center;
+}
+
+.admin-leader-role {
+    color: #2563eb;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.admin-leader-bio {
+    color: #4b5563;
+    font-size: 0.875rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.admin-leader-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #2563eb;
+    transition: color 0.3s ease;
+}
+
+.admin-leader-link:hover {
+    color: #1e40af;
+}
+
+.admin-link-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.25rem;
+}
+
+.admin-offices-wrapper {
+    background-color: #f9fafb;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    border: 1px solid #f3f4f6;
+}
+
+@media (min-width: 768px) {
+    .admin-offices-wrapper {
+        padding: 3rem;
+    }
+}
+
+.admin-offices-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .admin-offices-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .admin-offices-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.admin-office-card {
+    display: block;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid #f3f4f6;
+    transition: all 0.3s ease;
+}
+
+.admin-office-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-color: #bfdbfe;
+}
+
+.admin-office-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-office-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.admin-office-card:nth-child(1) .admin-office-icon {
+    background-color: #eff6ff;
+    color: #2563eb;
+}
+
+.admin-office-card:nth-child(1):hover .admin-office-icon {
+    background-color: #2563eb;
+    color: white;
+}
+
+.admin-office-card:nth-child(2) .admin-office-icon {
+    background-color: #f0fdf4;
+    color: #16a34a;
+}
+
+.admin-office-card:nth-child(2):hover .admin-office-icon {
+    background-color: #16a34a;
+    color: white;
+}
+
+.admin-office-card:nth-child(3) .admin-office-icon {
+    background-color: #faf5ff;
+    color: #9333ea;
+}
+
+.admin-office-card:nth-child(3):hover .admin-office-icon {
+    background-color: #9333ea;
+    color: white;
+}
+
+.admin-office-card:nth-child(4) .admin-office-icon {
+    background-color: #fefce8;
+    color: #ca8a04;
+}
+
+.admin-office-card:nth-child(4):hover .admin-office-icon {
+    background-color: #ca8a04;
+    color: white;
+}
+
+.admin-office-card:nth-child(5) .admin-office-icon {
+    background-color: #fef2f2;
+    color: #dc2626;
+}
+
+.admin-office-card:nth-child(5):hover .admin-office-icon {
+    background-color: #dc2626;
+    color: white;
+}
+
+.admin-office-card:nth-child(6) .admin-office-icon {
+    background-color: #f0fdfa;
+    color: #0d9488;
+}
+
+.admin-office-card:nth-child(6):hover .admin-office-icon {
+    background-color: #0d9488;
+    color: white;
+}
+
+.admin-office-card:nth-child(7) .admin-office-icon {
+    background-color: #fdf2f8;
+    color: #db2777;
+}
+
+.admin-office-card:nth-child(7):hover .admin-office-icon {
+    background-color: #db2777;
+    color: white;
+}
+
+.admin-office-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.admin-office-desc {
+    color: #6b7280;
+    font-size: 0.875rem;
+}

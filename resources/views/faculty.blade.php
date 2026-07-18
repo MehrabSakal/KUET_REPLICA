@@ -20,7 +20,7 @@
                 <a href="{{ route('faculty.show', $faculty->id) }}" class="faculty-card">
                     <div class="faculty-image-container">
                         @if($faculty->image)
-                            <img src="{{ $faculty->image }}" alt="{{ $faculty->name }}" class="faculty-image">
+                            <img src="{{ $faculty->image_url }}" alt="{{ $faculty->name }}" class="faculty-image">
                         @else
                             <span class="faculty-avatar-placeholder">👤</span>
                         @endif

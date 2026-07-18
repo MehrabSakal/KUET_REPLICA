@@ -22,4 +22,21 @@ class Faculty extends Authenticatable
     {
         return $this->hasMany(ResearchRequest::class);
     }
+
+    public function getImageUrlAttribute()
+    {
+        if (!$this->image) {
+            return null;
+        }
+
+        if (str_starts_with($this->image, 'http')) {
+            return $this->image;
+        }
+
+        if (str_starts_with($this->image, '/')) {
+            return asset($this->image);
+        }
+
+        return asset('images/faculty/' . $this->image);
+    }
 }

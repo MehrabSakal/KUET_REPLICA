@@ -10,17 +10,17 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  Closure(Request): (Response)  $next
-     */
+    
+    //Handle an incoming request.
+     
+    //@param  Closure(Request): (Response)  $next
+     
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check() && Auth::user()->user_type === 'admin') {
             return $next($request);
         }
-        
+    
         abort(403, 'Unauthorized. Only admin can access this page.');
     }
 }

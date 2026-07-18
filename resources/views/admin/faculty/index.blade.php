@@ -21,7 +21,7 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
                 <div class="h-48 bg-gray-200 overflow-hidden flex justify-center items-center">
                     @if($faculty->image)
-                        <img src="{{ $faculty->image }}" alt="{{ $faculty->name }}" class="w-full h-full object-cover">
+                        <img src="{{ $faculty->image_url }}" alt="{{ $faculty->name }}" class="w-full h-full object-cover">
                     @else
                         <span class="text-6xl">👤</span>
                     @endif

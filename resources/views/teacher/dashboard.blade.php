@@ -37,7 +37,7 @@
         <div class="px-4 py-6 sm:px-0">
             <h1 class="text-3xl font-bold text-gray-900 mb-6">Dashboard</h1>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 gap-6">
                 <!-- Profile Widget -->
                 <div class="bg-white overflow-hidden shadow rounded-lg p-6">
                     <div class="flex items-center justify-between mb-4">
@@ -47,7 +47,7 @@
                     
                     <div class="flex items-center space-x-4">
                         @if($teacher->image)
-                            <img src="{{ asset('images/faculty/' . $teacher->image) }}" alt="{{ $teacher->name }}" class="h-20 w-20 rounded-full object-cover">
+                            <img src="{{ $teacher->image_url }}" alt="{{ $teacher->name }}" class="h-20 w-20 rounded-full object-cover">
                         @else
                             <div class="h-20 w-20 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-2xl font-bold">
                                 {{ substr($teacher->name, 0, 1) }}

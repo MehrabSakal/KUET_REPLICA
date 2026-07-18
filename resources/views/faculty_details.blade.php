@@ -22,7 +22,7 @@
         <div class="faculty-profile-sidebar">
             <div class="faculty-profile-avatar">
                 @if($faculty->image)
-                    <img src="{{ asset($faculty->image) }}" alt="{{ $faculty->name }}" class="faculty-profile-image">
+                    <img src="{{ $faculty->image_url }}" alt="{{ $faculty->name }}" class="faculty-profile-image">
                 @else
                     <span class="faculty-profile-placeholder">👤</span>
                 @endif

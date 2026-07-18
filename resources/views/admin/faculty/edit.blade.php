@@ -64,7 +64,7 @@
             <label class="form-label">Image Upload (Optional)</label>
             @if($faculty->image)
                 <div>
-                    <img src="{{ $faculty->image }}" alt="Current Image" class="current-image">
+                    <img src="{{ $faculty->image_url }}" alt="Current Image" class="current-image">
                 </div>
             @endif
             <input type="file" name="image" accept="image/*" class="form-input">

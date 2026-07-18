@@ -11,6 +11,9 @@ use App\Http\Controllers\LostAndFoundItemController;
 use App\Http\Controllers\BusScheduleController;
 use App\Http\Controllers\StudentVerificationController;
 use App\Http\Controllers\ResearchController;
+use App\Http\Controllers\FacultyPublicController;
+use App\Http\Controllers\Teacher\TeacherDashboardController;
+use App\Http\Controllers\Teacher\TeacherProfileController;
 
 // Student Verification Routes
 Route::get('/verify-student', [StudentVerificationController::class, 'showVerifyForm'])->name('student.verify');
@@ -79,11 +82,11 @@ Route::get('/academics/{faculty}', function ($faculty) {
     return view('faculty-departments', ['facultyData' => $data[$faculty]]);
 })->name('academics.faculty');
 
-Route::get('/faculty', [\App\Http\Controllers\FacultyPublicController::class, 'index'])->name('faculty.index');
-Route::get('/faculty/{id}', [\App\Http\Controllers\FacultyPublicController::class, 'show'])->name('faculty.show');
+Route::get('/faculty', [FacultyPublicController::class, 'index'])->name('faculty.index');
+Route::get('/faculty/{id}', [FacultyPublicController::class, 'show'])->name('faculty.show');
 
 Route::middleware('student.auth')->group(function () {
-    Route::post('/faculty/{id}/research-request', [\App\Http\Controllers\FacultyPublicController::class, 'submitResearchRequest'])->name('faculty.research-request');
+    Route::post('/faculty/{id}/research-request', [FacultyPublicController::class, 'submitResearchRequest'])->name('faculty.research-request');
 });
 
 Route::get('/students', function () {
@@ -130,12 +133,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 Route::prefix('teacher')->name('teacher.')->group(function () {
     // Authenticated Teacher Routes
     Route::middleware('auth:teacher')->group(function () {
-        Route::get('/dashboard', [\App\Http\Controllers\Teacher\TeacherDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [TeacherDashboardController::class, 'index'])->name('dashboard');
         
-        Route::post('/research-requests/{id}/approve', [\App\Http\Controllers\Teacher\TeacherDashboardController::class, 'approveRequest'])->name('research-request.approve');
-        Route::post('/research-requests/{id}/reject', [\App\Http\Controllers\Teacher\TeacherDashboardController::class, 'rejectRequest'])->name('research-request.reject');
+        Route::post('/research-requests/{id}/approve', [TeacherDashboardController::class, 'approveRequest'])->name('research-request.approve');
+        Route::post('/research-requests/{id}/reject', [TeacherDashboardController::class, 'rejectRequest'])->name('research-request.reject');
         
-        Route::get('/profile/edit', [\App\Http\Controllers\Teacher\TeacherProfileController::class, 'edit'])->name('profile.edit');
-        Route::put('/profile/update', [\App\Http\Controllers\Teacher\TeacherProfileController::class, 'update'])->name('profile.update');
+        Route::get('/profile/edit', [TeacherProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile/update', [TeacherProfileController::class, 'update'])->name('profile.update');
     });
 });
