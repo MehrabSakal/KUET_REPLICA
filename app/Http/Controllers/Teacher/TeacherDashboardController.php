@@ -15,7 +15,15 @@ class TeacherDashboardController extends Controller
         $pendingRequests = $teacher->researchRequests()->where('status', 'pending')->latest()->get();
         $pastRequests = $teacher->researchRequests()->where('status', '!=', 'pending')->latest()->get();
 
-        return view('teacher.dashboard', compact('teacher', 'pendingRequests', 'pastRequests'));
+        // Fetch Class Schedules for this teacher
+        $classSchedules = clone $teacher->classSchedules()
+            ->with(['department', 'room'])
+            ->orderBy('day_of_week')
+            ->orderBy('start_time')
+            ->get()
+            ->groupBy('day_of_week');
+
+        return view('teacher.dashboard', compact('teacher', 'pendingRequests', 'pastRequests', 'classSchedules'));
     }
 
     public function approveRequest($id)

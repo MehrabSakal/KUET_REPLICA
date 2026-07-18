@@ -105,6 +105,12 @@ Route::middleware('student.auth')->group(function () {
     Route::get('/lost-and-found/create', [LostAndFoundItemController::class, 'create'])->name('lost-and-found.create');
     Route::post('/lost-and-found', [LostAndFoundItemController::class, 'store'])->name('lost-and-found.store');
     Route::post('/lost-and-found/{id}/resolve', [LostAndFoundItemController::class, 'resolve'])->name('lost-and-found.resolve');
+    
+    // Class Schedule Routes
+    Route::get('/class-schedule', [App\Http\Controllers\ClassScheduleController::class, 'index'])->name('class-schedule.index');
+    Route::get('/class-schedule/{department}', [App\Http\Controllers\ClassScheduleController::class, 'department'])->name('class-schedule.department');
+    Route::get('/class-schedule/{department}/year/{year}', [App\Http\Controllers\ClassScheduleController::class, 'yearSchedule'])->name('class-schedule.year-schedule');
+    Route::get('/class-schedule/{department}/empty-rooms', [App\Http\Controllers\ClassScheduleController::class, 'emptyRooms'])->name('class-schedule.empty-rooms');
 });
 
 Route::get('/administration', function () {
@@ -127,6 +133,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('students', AdminStudentController::class)->except(['show']);
     Route::resource('lost-and-found', AdminLostAndFoundController::class)->except(['show', 'create', 'store']);
     Route::resource('bus-schedule', AdminBusScheduleController::class)->except(['show']);
+    Route::resource('class-schedule', App\Http\Controllers\Admin\ClassScheduleController::class)->except(['show']);
 });
 
 // Teacher Routes

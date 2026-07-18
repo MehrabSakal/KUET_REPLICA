@@ -23,6 +23,11 @@ class Faculty extends Authenticatable
         return $this->hasMany(ResearchRequest::class);
     }
 
+    public function classSchedules()
+    {
+        return $this->hasMany(ClassSchedule::class);
+    }
+
     public function getImageUrlAttribute()
     {
         if (!$this->image) {

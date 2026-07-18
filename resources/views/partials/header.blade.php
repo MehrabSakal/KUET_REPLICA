@@ -55,6 +55,7 @@
             <li><a href="{{ url('/academics') }}">Academics</a></li>
             <li><a href="{{ url('/faculty') }}">Faculty</a></li>
             <li><a href="{{ url('/research') }}">Research</a></li>
+            <li><a href="{{ route('class-schedule.index') }}">Class Schedule</a></li>
             <li><a href="{{ route('bus-schedule.index') }}">Bus Schedule</a></li>
             <li><a href="{{ route('lost-and-found.index') }}">Lost & Found</a></li>
             <li><a href="{{ url('/administration') }}">Administration</a></li>

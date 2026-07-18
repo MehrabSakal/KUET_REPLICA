@@ -109,6 +109,67 @@
                 @endif
             </div>
 
+            <!-- Class Schedule Section -->
+            <div class="mt-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Your Class Schedule</h2>
+                
+                @if($classSchedules->isEmpty())
+                    <div class="bg-white rounded-lg shadow p-6 text-center text-gray-500">
+                        You have no classes assigned yet.
+                    </div>
+                @else
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Day</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Classes</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    @foreach(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'] as $day)
+                                        @if(isset($classSchedules[$day]))
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900 border-r border-gray-100">
+                                                {{ $day }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="flex flex-wrap gap-3">
+                                                    @foreach($classSchedules[$day] as $class)
+                                                        @php
+                                                            $start = \Carbon\Carbon::parse($class->start_time);
+                                                            $end = \Carbon\Carbon::parse($class->end_time);
+                                                            $isLab = $start->diffInMinutes($end) > 90;
+                                                        @endphp
+                                                        <div class="flex flex-col {{ $isLab ? 'bg-indigo-50 border-indigo-200' : 'bg-blue-50 border-blue-200' }} border rounded p-3 shadow-sm min-w-[200px]">
+                                                            <div class="flex justify-between items-start mb-1">
+                                                                <span class="text-xs font-bold {{ $isLab ? 'text-indigo-700 bg-indigo-100' : 'text-blue-700 bg-blue-100' }} px-1 rounded">
+                                                                    {{ $start->format('h:i A') }} - {{ $end->format('h:i A') }}
+                                                                </span>
+                                                                <span class="text-xs font-bold text-gray-600">
+                                                                    {{ $class->room->room_number }}
+                                                                </span>
+                                                            </div>
+                                                            <p class="text-sm font-bold text-gray-900">{{ $class->subject }}</p>
+                                                            <p class="text-xs text-gray-600 mt-1">Year {{ $class->year }}, {{ $class->department->code }}</p>
+                                                            @if($isLab)
+                                                                <span class="text-[10px] uppercase tracking-wider text-indigo-500 font-bold mt-1">Lab Session</span>
+                                                            @endif
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                @endif
+            </div>
+
             <div class="mt-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">Request History</h2>
                 
